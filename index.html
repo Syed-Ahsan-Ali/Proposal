@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script>
+      var decryptedString = "";
+      var search = window.location.search.substr(1);
+      function decryptChar(char){
+        return String.fromCharCode(char);
+      }
+      function decryptString() {
+        var asciis = search.split('{-$-}');
+        asciis.forEach(function (ascii) {
+          decryptedString = decryptedString + decryptChar(ascii);
+        })
+        decryptedString = decryptedString.substr(1,decryptedString.length-2);
+      }
+      decryptString();
+      var securityObject = {};
+      var params = decryptedString.split('&');
+      for(var param in params){
+        var p = params[param].split('=');
+        securityObject[p[0]] = p[1];
+      }
+      window.securityObject = securityObject;
+    </script>
+    <meta content="">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Optional theme -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+  var messageEventHandler = function(event){
+        //preventing internal webpack interruption messages.
+        // No security checks for now
+    if(event.origin != window.location.origin){
+      if(event.data.name === "hidePopup"){
+        $("#myModal").modal('toggle');
+      }
+    }
+  }
+  window.addEventListener('message', messageEventHandler,true);
+
+    </script>
+  </head>
+  <body id="body">
+
+    <div id="react-container"></div>
+    <script src="/dist/bundle.js"></script>
+    <script>
+      var height = 0;
+      sendPageSize = () => {
+        let body = document.body,
+            html = document.documentElement;
+            height = Math.max( body.scrollHeight, body.offsetHeight,
+              html.clientHeight, html.scrollHeight, html.offsetHeight );
+        parent.postMessage({
+          name:"docInfo",
+          docHeight: height
+        },'*');
+      }
+
+      $(document).on('click', '#myModal', function (e) {
+        if(e.target.id === "myModal"){
+          parent.postMessage({name: "hidepopup"},'*');
+        }
+      });
+
+
+
+      document.body.onresize = function () {
+        sendPageSize()
+      }
+
+      window.onload = function() {
+        sendPageSize()
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,790 @@
+@import 'bootstrap-3.3.7';
+//Var Definition
+$font-style: "Open Sans", sans-serif;
+$font-size: 12px;
+$font-weight: 300;
+$border-color: rgba(0, 0, 0, 0.07);
+$page-bgcolor: #ffffff;
+$table-footer-color: #ffffff;
+$table-header-bgcolor: #ffffff;
+$bg-transparent: transparent;
+$breadcrumb-color: #7b7d82;
+$wise-error-color: #8f5c5e;
+$wise-error-bgcolor: #f7d8db;
+$wise-success-color: #518f53;
+$wise-success-bgcolor: #bef7c7;
+$wise-info-color: #31708f;
+$wise-info-bgcolor: #d9edf7;
+$wise-warning-color: #eee774;
+$wise-warning-bgcolor: #f6f7c9;
+$tablerow-bgcolor: #f8f8f8;
+$thead-bgcolor: #ebebeb;
+$th-color: #939393;
+$header-bgcolor: #6ac259;
+$primary-color: #62c4b6;
+$warning-color: #faa732;
+$heading-color: #626262;
+$secondary-color: #ff5649;
+$scrollbar-color: rgba(0, 0, 0, 0.1);
+$scrollbarthumb-color: rgba(0, 0, 0, 0.5);
+$bg-danger:red;
+$bg-warning:yellow;
+
+//Function Definition
+
+@mixin custom-border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin custom-border($width, $color, $style) {
+  border: {
+    width: $width;
+    color: $color;
+    style: $style;
+  }
+}
+
+@mixin wiseContainer {
+  margin-bottom: 10px;
+  height: 60px;
+  overflow: hidden;
+  position: relative;
+  padding: 15px;
+  @include slideLeft;
+  @include custom-border-radius(300px);
+}
+
+@mixin slideLeft {
+  animation-name: slideLeft;
+  -webkit-animation-name: slideLeft;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  visibility: visible !important;
+}
+
+//Integrations -> Kaseya start
+
+.page-wrapper {
+  margin-top: 15px;
+  padding: 0px 15px;
+  margin-bottom: 15px;
+
+  .page-container {
+    background: $page-bgcolor;
+    @extend .container-fluid;
+  }
+}
+
+.widgetborder {
+  @include custom-border(1px, $border-color, solid);
+}
+
+.imgLoader{
+  -webkit-animation-name: spin;
+  -webkit-animation-duration: 3000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-name: spin;
+  -moz-animation-duration: 3000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+  -ms-animation-name: spin;
+  -ms-animation-duration: 3000ms;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-timing-function: linear;
+  animation-name: spin;
+  animation-duration: 3000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.bold {
+  font-weight: bold !important;
+}
+
+.form-group {
+  @include custom-border(0px 0px 1px 0px, $border-color, solid);
+  .form-control {
+    border: none;
+    box-shadow: none;
+  }
+}
+
+label {
+  font-weight: $font-weight;
+  margin-bottom: 10px;
+  font-size: $font-size;
+  font-family: $font-style;
+}
+
+p {
+  margin: 0;
+  font-family: $font-style;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+.hr-integration {
+  border-width: 3px;
+}
+
+.breadcrumb {
+  background-color: $bg-transparent;
+  padding: 5px 0px;
+  margin: 0px;
+  text-transform: uppercase;
+
+  a {
+    color: $breadcrumb-color;
+    text-decoration: none;
+  }
+}
+
+.list-items {
+  display: flex;
+}
+
+.companyheader {
+  font-size: 28px !important;
+  font-weight: 200;
+  font-family: $font-style;
+  float: left;
+}
+
+button {
+  background: $bg-transparent;
+  border: none;
+  padding: 0px 10px;
+  outline: none;
+}
+
+.btn-bg {
+  background-color: $tablerow-bgcolor;
+  padding: 8px !important;
+  float: right;
+  @include custom-border(1px, $border-color, solid);
+  @include custom-border-radius(40px);
+}
+
+.alert-wrapper {
+  display: none;
+  background-Color: $secondary-color;
+  color: $tablerow-bgcolor;
+}
+
+.m-t-20 {
+  margin-top: 20px;
+}
+
+.m-b-15 {
+  margin-bottom: 15px;
+}
+
+.m-b-5 {
+  margin-bottom: 5px;
+}
+
+.m-t-5 {
+  margin-top: 5px;
+}
+
+.error-txt-msg {
+  font-size: $font-size;
+  color: $secondary-color;
+  display: block;
+}
+
+.search-icon-hover {
+  position: absolute;
+  top: 73px;
+  left: 109px;
+}
+
+//Integrations -> Kaseya End
+
+//Wise Error Message Popup Start
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(150%);
+  }
+  50% {
+    transform: translateX(-8%);
+  }
+  65% {
+    transform: translateX(4%);
+  }
+  80% {
+    transform: translateX(-4%);
+  }
+  95% {
+    transform: translateX(2%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@-webkit-keyframes slideLeft {
+  0% {
+    -webkit-transform: translateX(150%);
+  }
+  50% {
+    -webkit-transform: translateX(-8%);
+  }
+  65% {
+    -webkit-transform: translateX(4%);
+  }
+  80% {
+    -webkit-transform: translateX(-4%);
+  }
+  95% {
+    -webkit-transform: translateX(2%);
+  }
+  100% {
+    -webkit-transform: translateX(0%);
+  }
+}
+
+.wise-heading {
+  font-weight: bold;
+}
+
+.wise-close {
+  background: url('//img/noti-cross.png') no-repeat scroll 0 0 transparent;
+  background-position: -4px -10px;
+  width: 10px;
+  height: 9px;
+  position: absolute;
+  opacity: 0.8;
+  top: 4.5px;
+  font-size: 0;
+  top: 40%;
+  right: 18px;
+  border: 0;
+}
+
+.wise-message-wrapper {
+  position: absolute;
+  right: 15px;
+  top: 50px;
+  width: 20%;
+  z-index: 100;
+}
+
+.wise-error {
+  color: $wise-error-color;
+  background-color: $wise-error-bgcolor;
+  @include wiseContainer;
+}
+
+.wise-success {
+  color: $wise-success-color;
+  background-color: $wise-success-bgcolor;
+  @include wiseContainer;
+}
+
+.wise-info {
+  color: $wise-info-color;
+  background-color: $wise-info-bgcolor;
+  @include wiseContainer;
+}
+
+.wise-warning {
+  color: $wise-warning-color;
+  background-color: $wise-warning-bgcolor;
+  @include wiseContainer;
+}
+
+//Wise Error Message Popup End
+
+//Domain Tracker Start
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.table-header-bg {
+  background-color: $header-bgcolor;
+  color: $table-header-bgcolor;
+}
+.table-danger{
+  background-color:$bg-danger;
+  color:$table-header-bgcolor;
+}
+.table-warning{
+  background-color:$bg-warning;
+  color:$table-header-bgcolor;
+}
+
+.table-footer {
+  background: $th-color;
+  color: $table-footer-color;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.m-t-15 {
+  margin-top: 15px;
+}
+
+.table-alternate-row {
+  tr:nth-child(even) {
+    background: $tablerow-bgcolor;
+  }
+}
+
+table {
+  margin-bottom: 0px !important;
+  thead {
+    tr {
+      background-color: $thead-bgcolor;
+      th {
+        color: $th-color;
+        font-size: 12px;
+        font-weight: 200;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  tbody {
+    @extend .table-alternate-row;
+    tr {
+      td {
+        padding: 10px 10px !important;
+        border-top: none !important;
+        border-bottom: none !important;
+        font-size: 12px;
+        color: $th-color;
+      }
+      a, a:focus, a:hover {
+        padding-right: 7px;
+        text-decoration: underline;
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: $heading-color;
+  background: none;
+  @include custom-border(0px 0px 5px 0px, $primary-color, solid);
+}
+
+.scrollBar::-webkit-scrollbar {
+  width: 6px; /* for vertical scrollbars */
+  height: 6px; /* for horizontal scrollbars */
+}
+
+.scrollBar::-webkit-scrollbar-track {
+  background: $scrollbar-color;
+}
+
+.scrollBar::-webkit-scrollbar-thumb {
+  background: $scrollbarthumb-color;
+}
+
+.table-scroller {
+  position: relative;
+  overflow: auto;
+  height: 165px;
+  width: 100%;
+  @extend .scrollBar;
+}
+
+.table-scroller-dns {
+  position: relative;
+  overflow: auto;
+  height: 167px;
+  width: 100%;
+  @extend .scrollBar;
+}
+
+.domain-view {
+  img {
+    height: 372px;
+    width: 100%;
+  }
+}
+
+.domain-info {
+  height: 175px;
+  line-height: 0.8;
+  padding: 0px;
+  color: $th-color;
+}
+
+.mx-record-column {
+  color: $th-color;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.whois-tab-info {
+  height: 285px;
+  background: lighten($border-color, 70%);
+  @include custom-border(0px 0px 0px 1px, $border-color, solid);
+  ul {
+    @include custom-border(0px 0px 1px 0px, $border-color, solid);
+    li {
+      padding-top: 5px;
+      padding-right: 5px;
+      padding-left: 5px;
+      a {
+        padding: 8px 20px !important;
+        border-radius: inherit;
+        font-size: 12px;
+        color: $heading-color;
+        font-weight: 600;
+      }
+    }
+  }
+  .tab-content {
+    height: 240px;
+    overflow: auto;
+    padding-left: 10px;
+    @extend .scrollBar;
+  }
+  table {
+    tr:nth-child(even) {
+      background: none;
+    }
+  }
+}
+
+.result {
+  @include custom-border(1px 0px 1px 0px, $border-color, solid);
+  color: $th-color;
+}
+
+.p-r-0 {
+  padding-right: 0px;
+}
+
+.p-l-0 {
+  padding-left: 0px;
+}
+
+.dns-column {
+  .table-bordered {
+    border-top: none !important;
+    border-bottom: none;
+  }
+}
+
+.dns-record {
+  clear: both;
+}
+
+@media (max-width: 1560px) and (min-width: 1200px) {
+  .domain-view {
+    width: 35%;
+    left: 0px;
+  }
+  .dns-record {
+    clear: initial;
+  }
+  .table-scroller {
+    height: 146px;
+  }
+
+  .registrar-info {
+    width: 65%;
+  }
+
+  .an-pttr-width {
+    width: 50%;
+    right: 0;
+    float: right;
+    padding-right: 0px;
+  }
+
+  .mx-record-column {
+    padding-left: 0px;
+    width: 100%;
+  }
+
+  .domain-info {
+    margin-top: 0px;
+    width: calc(100% / 2 - 10px / 2);
+    line-height: 1.8;
+  }
+
+  .domain-info:nth-child(1) {
+    margin-right: 10px;
+  }
+
+  .mx-record-column2 {
+    width: calc(100% / 2 - 15px);
+    position: absolute;
+    bottom: 15px;
+    right: 0px;
+  }
+  .spf-txt-column {
+    position: absolute;
+    margin-bottom: 15px;
+    margin-top: 0px;
+
+    div:nth-child(1) {
+      padding-right: 0px;
+    }
+  }
+  .domain-view {
+    padding-left: 15px !important;
+  }
+  .table-scroller-dns {
+    height: 144px;
+  }
+}
+
+@media(max-width: 1199px) {
+
+  .an-pttr-width {
+    padding-left: 0px;
+    margin-bottom: 15px;
+  }
+
+  .mx-record-column {
+    padding-left: 0px;
+  }
+
+  .spf-txt-column {
+    div:nth-child(1) {
+      padding-right: 0px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .txtmain {
+    padding-left: 0;
+    margin-top: 15px;
+  }
+}
+
+@media(max-width: 767px) {
+  .an-pttr-width {
+    margin-top: 15px;
+    padding-right: 0px;
+  }
+
+  .spf-txt-column {
+    .col-md-6 {
+      padding: 0px !important;
+      margin-top: 15px;
+    }
+  }
+  .table-header-bg {
+    overflow: hidden;
+    span:nth-child(1) {
+      font-size: 15px;
+    }
+  }
+  .domain-view {
+    clear: both;
+  }
+}
+
+@media(max-width: 530px) {
+  .table-header-bg {
+    display: block;
+    text-align: center;
+    .pull-right {
+      float: none !important;
+    }
+  }
+  .whois-tab-info {
+    text-align: center;
+    ul {
+      li {
+        float: none;
+      }
+    }
+    .tab-content {
+      height: 162px;
+    }
+  }
+
+}
+
+//Domain Tracker End
+
+#mx-record tbody {
+  display: block;
+  height: 130px;
+  overflow: auto;
+  @extend .scrollBar;
+}
+
+#mx-record thead, #mx-record tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+#mx-record thead {
+  width: 100%;
+}
+
+#mx-record thead th {
+  border-left: 1px solid #ddd;
+}
+
+#mx-record thead th:nth-child(1), #mx-record tbody td:nth-child(1) {
+  width: 15%;
+}
+
+#mx-record thead th:nth-child(2), #mx-record tbody td:nth-child(2) {
+  width: 15%;
+}
+
+#mx-record thead th:nth-child(3), #mx-record tbody td:nth-child(3) {
+  width: 35%;
+}
+
+#mx-record thead th:nth-child(4), #mx-record tbody td:nth-child(4) {
+  width: 15%;
+}
+
+#mx-record thead th:nth-child(5), #mx-record tbody td:nth-child(5) {
+  width: 30%;
+}
+
+
+#spf tbody {
+  display: block;
+  height: 130px;
+  overflow: auto;
+  @extend .scrollBar;
+}
+
+#spf thead, #spf tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+#spf thead {
+  width: 100%;
+}
+
+#spf thead th {
+  border-left: 1px solid #ddd;
+}
+
+#spf thead th:nth-child(1), #spf tbody td:nth-child(1) {
+  width: 20%;
+}
+
+#spf thead th:nth-child(2), #spf tbody td:nth-child(2) {
+  width: 40%;
+}
+
+#spf thead th:nth-child(3), #spf tbody td:nth-child(3) {
+  width: 40%;
+}
+//txt//
+#txt tbody {
+  display: block;
+  height: 130px;
+  overflow: auto;
+  @extend .scrollBar;
+}
+
+#txt thead, #txt tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+#spf thead {
+  width: 100%;
+}
+
+#txt thead th {
+  border-left: 1px solid #ddd;
+}
+
+#txt thead th:nth-child(1), #txt tbody td:nth-child(1) {
+  width: 40%;
+}
+
+#txt thead th:nth-child(2), #txt tbody td:nth-child(2) {
+  width: 40%;
+}
+
+#txt thead th:nth-child(3), #txt tbody td:nth-child(3) {
+  width: 20%;
+}
+//dns//
+
+#dns {
+  overflow: auto;
+  @extend .scrollBar;
+}
+
+#dns tbody {
+  display: block;
+  max-height: 167px;
+  overflow: auto;
+  @extend .scrollBar;
+  min-width: 800px;
+}
+
+#dns thead, #dns tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+#dns thead {
+  width: 100%;
+  min-width: 800px;
+}
+
+#dns thead th {
+  border-left: 1px solid #ddd;
+}
+
+#dns thead th:nth-child(1), #dns tbody td:nth-child(1) {
+  width: 7%;
+}
+
+#dns thead th:nth-child(2), #dns tbody td:nth-child(2) {
+  width: 15%;
+}
+
+#dns thead th:nth-child(3), #dns tbody td:nth-child(3) {
+  width: 15%;
+}
+#dns thead th:nth-child(4), #dns tbody td:nth-child(4) {
+  width: 7%;
+}
+
+#dns thead th:nth-child(5), #dns tbody td:nth-child(5) {
+  width: 10%;
+}
+
+#dns thead th:nth-child(6), #dns tbody td:nth-child(6) {
+  width: 15%;
+}
+#dns thead th:nth-child(7), #dns tbody td:nth-child(7) {
+  width: 10%;
+}
+
+#dns thead th:nth-child(8), #dns tbody td:nth-child(8) {
+  width: 10%;
+}
+
+#dns thead th:nth-child(9), #dns tbody td:nth-child(9) {
+  width: 10%;
+}

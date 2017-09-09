@@ -1,0 +1,11 @@
+https://palantir.github.io/tslint/rules/prefer-for-of
+https://palantir.github.io/tslint/rules/promise-function-async
+https://palantir.github.io/tslint/rules/no-null-keyword
+https://palantir.github.io/tslint/rules/trailing-comma/
+https://palantir.github.io/tslint/rules/align/
+https://palantir.github.io/tslint/rules/arrow-return-shorthand/
+https://palantir.github.io/tslint/rules/completed-docs/
+https://palantir.github.io/tslint/rules/newline-before-return/
+https://palantir.github.io/tslint/rules/switch-final-break/
+ "indent": [true, "spaces", "2"],
+ test
