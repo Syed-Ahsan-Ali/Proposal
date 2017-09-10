@@ -1,5 +1,4 @@
 import {Component} from "react";
-import {connect} from "react-redux";
 export class DropDownComp extends Component{
   constructor(props){
     super(props);
@@ -25,11 +24,3 @@ export class DropDownComp extends Component{
     );
   }
 }
-const mapStateToProps=(state)=>({
-
-});
-const mapDispatchToProps=(dispatch)=>({
-
-});
-export const DropDownContainer=
-  connect(mapStateToProps,mapDispatchToProps)(DropDownComp)
