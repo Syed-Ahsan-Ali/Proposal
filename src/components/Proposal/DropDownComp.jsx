@@ -2,6 +2,10 @@ import {Component} from "react";
 export class DropDownComp extends Component{
   constructor(props){
     super(props);
+    this.handleChange=this.handleChange.bind(this);
+  }
+  handleChange(e){
+    this.props.onChange(e.target.id);
   }
   render(){
     let props=this.props;
@@ -18,7 +22,7 @@ export class DropDownComp extends Component{
             {this.props.data.map((obj,i)=>
               <div key={i}>
                 <label>{obj.screenName}
-                <input type="checkbox"/>
+                <input type="checkbox" onChange={this.handleChange} id={obj.Id}/>
                 </label>
               </div>
             )}

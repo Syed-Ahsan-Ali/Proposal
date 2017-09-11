@@ -126,6 +126,15 @@ export const getTags=()=>(dispatch)=>{
     });
   });
 };
+export const getDescById=(Id)=>(dispatch)=>{
+  get("tags/"+Id).then(({body})=>{
+    debugger
+    dispatch({
+      type:"DescById",
+      payload:body
+    });
+  });
+};
 
 
 // export const clearAllWiseMessages = ()  =>  dispatch  =>  {

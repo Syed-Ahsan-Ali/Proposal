@@ -30,10 +30,11 @@ export const WiseMessages = (state=[], action) => {//tslint:disable-line
     return state;
   }
 };
-export const Proposal=(state=State.tags,action)=>{
+export const Proposal=(state={},action)=>{
   switch (action.type){
     case "tags":
-      debugger
+      return action.payload;
+    case "DescById":
       return action.payload;
     default:
       return state
