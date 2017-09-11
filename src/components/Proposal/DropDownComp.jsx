@@ -4,6 +4,8 @@ export class DropDownComp extends Component{
     super(props);
   }
   render(){
+    let props=this.props;
+    debugger;
     return(
       <div id="colvisbtn">
         <div data-toggle="tooltip" data-placement="top" title="Select Skill" className="dropdown pull-right">
@@ -13,11 +15,13 @@ export class DropDownComp extends Component{
             </a>
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <div>
-              <label>Test
-              <input type="checkbox"/>
-              </label>
-            </div>
+            {this.props.data.map((obj,i)=>
+              <div key={i}>
+                <label>{obj.screenName}
+                <input type="checkbox"/>
+                </label>
+              </div>
+            )}
           </div>
         </div>
       </div>

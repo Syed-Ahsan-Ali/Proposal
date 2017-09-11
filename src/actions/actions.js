@@ -3,7 +3,7 @@ import {get,post} from "../utils/nioUtils";
 import {Kaseya} from "../components/integrations/kaseya/kaseyaContainer";
 import {system as S} from "../constants/system";
 import {types as T} from "../constants/types";
-
+import {Tags} from "./../components/Proposal/Models/Tags";
 export const viewDomainTracker= () => (dispatch) => {
   dispatch({
     type:T.COMPANY.DOMAINTRACKER.VIEW,
@@ -114,6 +114,15 @@ export const dnsDomainTracker = (domainName) => (dispatch) => {
     dispatch({
       type:T.COMPANY.DOMAINTRACKER.DNS,
       payload:{fetching:false,data:body.data}
+    });
+  });
+};
+export const getTags=()=>(dispatch)=>{
+  get("tags").then(({body})=>{
+    debugger
+    dispatch({
+      type:"tags",
+      payload:body
     });
   });
 };

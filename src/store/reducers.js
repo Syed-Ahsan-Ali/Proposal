@@ -1,6 +1,6 @@
 import {combineReducers} from "redux";
+import {state as State} from "./../constants/initialState";
 import {types as T} from "../constants/types";
-
 
 //import {WiseMessage} from "../components/UtilComp/wiseMessageContainer";
 
@@ -30,9 +30,19 @@ export const WiseMessages = (state=[], action) => {//tslint:disable-line
     return state;
   }
 };
+export const Proposal=(state=State.tags,action)=>{
+  switch (action.type){
+    case "tags":
+      debugger
+      return action.payload;
+    default:
+      return state
+  }
+};
 export const appReducer=combineReducers({
   Kaseya,
-  WiseMessages
+  WiseMessages,
+  Proposal
   // domainTracker,
   ,state: (state = {}) => state //??
 });

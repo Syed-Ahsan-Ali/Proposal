@@ -1,5 +1,5 @@
 export const system = {
-  BK_BASE: "http://localhost:3333/",
+  BK_BASE: "http://localhost:3000/",
   BK : {
     API: {
       KASEYA_VIEW: "KaseyaApi/",
